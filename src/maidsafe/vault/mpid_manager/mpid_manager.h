@@ -36,17 +36,16 @@ class MpidManager {
  public:
   MpidManager(const boost::filesystem::path& vault_root_dir,
               DiskUsage max_disk_usage);
+
   template <typename DataType>
   routing::HandleGetReturn HandleGet(routing::SourceAddress from, Identity data_name);
 
   template <typename DataType>
-  routing::HandlePutPostReturn HandlePut(const routing::DestinationAddress& dest,
-                                         const DataType& data);
+  routing::HandlePutReturn HandlePut(const routing::DestinationAddress& dest, const DataType& data);
 
-  routing::HandlePostReturn HandlePost(routing::SourceAddress from,
-                                       MpidMessage mpid_message);
-  routing::HandlePostReturn HandlePost(routing::SourceAddress from,
-                                       MpidAlert mpid_message);
+  routing::HandlePostReturn HandlePost(routing::SourceAddress from, MpidMessage mpid_message);
+
+  routing::HandlePostReturn HandlePost(routing::SourceAddress from, MpidAlert mpid_message);
 
   void HandleChurn(routing::CloseGroupDifference);
 

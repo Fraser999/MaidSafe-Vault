@@ -70,11 +70,11 @@ routing::HandleGetReturn VaultFacade::HandleGet(routing::SourceAddress from,
   return boost::make_unexpected(MakeError(VaultErrors::failed_to_handle_request));
 }
 
-routing::HandlePutPostReturn VaultFacade::HandlePut(routing::SourceAddress from,
-                                                    routing::Authority from_authority,
-                                                    routing::Authority authority,
-                                                    DataTypeId data_type_id,
-                                                    SerialisedData serialised_data) {
+routing::HandlePutReturn VaultFacade::HandlePut(routing::SourceAddress from,
+                                                routing::Authority from_authority,
+                                                routing::Authority authority,
+                                                DataTypeId data_type_id,
+                                                SerialisedData serialised_data) {
   switch (authority) {
     case routing::Authority::client_manager:
       if (from_authority != routing::Authority::client)
@@ -114,8 +114,9 @@ routing::HandlePutPostReturn VaultFacade::HandlePut(routing::SourceAddress from,
 
 // MpidManager is ClientManager
 routing::HandlePostReturn VaultFacade::HandlePost(routing::SourceAddress from,
-    routing::Authority from_authority, routing::Authority authority,
-        routing::SerialisedMessage message) {
+                                                  routing::Authority from_authority,
+                                                  routing::Authority authority,
+                                                  routing::SerialisedMessage message) {
   switch (authority) {
     case routing::Authority::client_manager:
       if (from_authority == routing::Authority::client) {

@@ -38,7 +38,7 @@ class PmidNode {
   routing::HandleGetReturn HandleGet(routing::SourceAddress from, Identity data_name);
 
   template <typename DataType>
-  routing::HandlePutPostReturn HandlePut(routing::SourceAddress from, DataType data);
+  routing::HandlePutReturn HandlePut(routing::SourceAddress from, DataType data);
   void HandleChurn(routing::CloseGroupDifference);
 };
 
@@ -51,8 +51,8 @@ routing::HandleGetReturn PmidNode<Child>::HandleGet(routing::SourceAddress /*fro
 
 template <typename Child>
 template <typename DataType>
-routing::HandlePutPostReturn PmidNode<Child>::HandlePut(routing::SourceAddress /* from */,
-                                                        DataType /* data */) {
+routing::HandlePutReturn PmidNode<Child>::HandlePut(routing::SourceAddress /* from */,
+                                                    DataType /* data */) {
   return boost::make_unexpected(MakeError(VaultErrors::failed_to_handle_request));  // FIXME
 }
 

@@ -65,14 +65,14 @@ class VaultFacade : public MaidManager<VaultFacade>,
                                      routing::Authority authority,
                                      Data::NameAndTypeId name_and_type_id);
 
-  routing::HandlePutPostReturn HandlePut(routing::SourceAddress from,
-                                         routing::Authority from_authority,
-                                         routing::Authority authority, DataTypeId data_type_id,
-                                         SerialisedData serialised_data);
+  routing::HandlePutReturn HandlePut(routing::SourceAddress from, routing::Authority from_authority,
+                                     routing::Authority authority, DataTypeId data_type_id,
+                                     SerialisedData serialised_data);
 
   routing::HandlePostReturn HandlePost(routing::SourceAddress from,
-      routing::Authority from_authority, routing::Authority authority,
-          routing::SerialisedMessage message);
+                                       routing::Authority from_authority,
+                                       routing::Authority authority,
+                                       routing::SerialisedMessage message);
 
   bool HandlePost(const routing::SerialisedMessage& message);
   // not in local cache do upper layers have it (called when we are in target group)

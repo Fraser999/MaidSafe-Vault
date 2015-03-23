@@ -44,10 +44,11 @@ class FakeRouting {
   ~FakeRouting() = default;
 
   template <typename DataType>
-  routing::HandlePutPostReturn TriggerHandleGet(SourceAddress from, Authority from_authority,
-      Authority authority, DataType data_type, Identity data_name) {
-    return static_cast<Child*>(this)->HandleGet(from, from_authority, authority, data_type,
-                                                data_name);
+  routing::HandlePutReturn TriggerHandleGet(SourceAddress from, Authority from_authority,
+                                            Authority authority, DataType data_type,
+                                            Identity data_name) {
+    return static_cast<Child*>(this)
+        ->HandleGet(from, from_authority, authority, data_type, data_name);
   }
 
   template <typename DataType>

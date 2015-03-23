@@ -36,7 +36,7 @@ class MaidManager {
   routing::HandleGetReturn HandleGet(routing::SourceAddress from, Identity data_name);
 
   template <typename DataType>
-  routing::HandlePutPostReturn HandlePut(routing::SourceAddress from, DataType data);
+  routing::HandlePutReturn HandlePut(routing::SourceAddress from, DataType data);
   void HandleChurn(routing::CloseGroupDifference);
 };
 
@@ -49,8 +49,8 @@ routing::HandleGetReturn MaidManager<Child>::HandleGet(routing::SourceAddress /*
 
 template <typename Child>
 template <typename DataType>
-routing::HandlePutPostReturn MaidManager<Child>::HandlePut(routing::SourceAddress /*from*/,
-                                                           DataType /*data*/) {
+routing::HandlePutReturn MaidManager<Child>::HandlePut(routing::SourceAddress /*from*/,
+                                                       DataType /*data*/) {
   return boost::make_unexpected(MakeError(VaultErrors::failed_to_handle_request));  // FIXME
 }
 
